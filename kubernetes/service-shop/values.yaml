@@ -1,0 +1,49 @@
+# Default values for backend.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: registry.zi-github.com/vsc/service-shop
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 'latest'
+  registrySecret: 'harbor-registry-secret'
+
+ingress:
+  host: sustainable-city.zi-platform.com
+  path: '/service-shop/v1/(.*)'
+  pathType: Prefix
+
+deploymentConfig:
+  containerPort: '3504'
+
+configMap:
+  NODE_ENV: production
+  PORT: '3504'
+
+  SERVICE_API_PORT: 3504
+  SERVICE_API_POSTGRES_HOST: 192.168.100.228
+  SERVICE_API_POSTGRES_PORT: "5432"
+  SERVICE_API_POSTGRES_USER: vsc_db
+  SERVICE_API_POSTGRES_DATABASE: vsc_db
+  SERVICE_API_JWT_EXPIRATION_TIME: "3d"
+  MINIO_ENDPOINT: "file.zicure.com"
+  MINIO_USE_SSL: "false"
+  SWAGGER_BASE_URI: "https://sustainable-city.zi-platform.com/service-shop/v1/"
+
+secretMap:
+  SERVICE_API_JWT_SECRET: b5ZQRLTsfExSFjxVpFKPFN4a2DLlRbOP4gkoDTAtHFJoT+mj
+  SERVICE_API_POSTGRES_PASSWORD: stebuGlvahaz7s15jist4staspi6obro
+  MINIO_ACCESS_KEY: PTMWTFXYitWBSJUW97oJ
+  MINIO_SECRET_KEY: 4SYipw2h27SxbXH776Jj4gxRsbfkQmlFkAEiVY3W
+
+redis:
+  architecture: standalone
+  global:
+    enabled: true
+    storageClass: openebs-hostpath
+  auth:
+    enabled: true
+    password: asdasdfasdf

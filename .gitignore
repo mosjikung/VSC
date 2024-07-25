@@ -1,0 +1,11 @@
+.env.local
+.env
+kubernetes/vsc/charts
+kubernetes/vsc-api/vsc-api-1.0.0.tgz
+kubernetes/service-member/service-member-1.0.0.tgz
+kubernetes/service-store/service-store-1.0.0.tgz
+kubernetes/service-community/service-community-1.0.0.tgz
+kubernetes/service-card/service-card-1.0.0.tgz
+kubernetes/service-shop/service-shop-1.0.0.tgz
+kubernetes/service-wallet/service-wallet-1.0.0.tgz
+*.tgz

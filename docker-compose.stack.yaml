@@ -1,0 +1,44 @@
+version: '3.9'
+networks:
+  default:
+    name: vsc-connect-network
+volumes:
+  postgres:
+    name: vsc-connect-postgres
+  redis:
+    name: vsc-connect-redis
+  minio:
+    name: vsc-connect-minio
+
+services:
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio:/data
+    command: server --console-address ":9001" /data
+
+  redis:
+    image: redis:alpine
+    env_file:
+      - .env
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD}"]
+    volumes:
+        - redis:/data
+  
+  postgres:
+    image: postgres:16
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=vsc-connect
+      - POSTGRES_PASSWORD=${SERVICE_API_POSTGRES_PASSWORD}
+      - POSTGRES_DB=vscvsc-connect
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+

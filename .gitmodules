@@ -1,0 +1,18 @@
+[submodule "service-member"]
+	path = service-member
+	url = git@ssh.zi-github.com:sustainable-city/service-member.git
+[submodule "service-store"]
+	path = service-store
+	url = git@ssh.zi-github.com:sustainable-city/service-store.git
+[submodule "service-community"]
+	path = service-community
+	url = git@ssh.zi-github.com:sustainable-city/service-community.git
+[submodule "service-card"]
+	path = service-card
+	url = git@ssh.zi-github.com:sustainable-city/service-card.git
+[submodule "service-shop"]
+	path = service-shop
+	url = git@ssh.zi-github.com:sustainable-city/service-shop.git
+[submodule "service-wallet"]
+	path = service-wallet
+	url = git@ssh.zi-github.com:sustainable-city/service-wallet.git

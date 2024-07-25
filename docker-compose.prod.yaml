@@ -1,0 +1,57 @@
+version: '3.9'
+networks:
+    default:
+        name: vsc-connect-network
+
+services:
+  vsc-api-app:
+    build:
+      context: ./vsc-api
+      target: 'production'
+    image: ${IMAGE_REGISTRY:+${IMAGE_REGISTRY}/}vsc-api:latest
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '${SERVICE_API_PORT}:${SERVICE_API_PORT}'
+    restart: always
+
+  service-member-app:
+    build:
+      context: ./service-member
+      target: 'production'
+    image: ${IMAGE_REGISTRY:+${IMAGE_REGISTRY}/}service-member:latest
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '${SERVICE_MEMBER_API_PORT}:${SERVICE_MEMBER_API_PORT}'
+    restart: always
+
+  service-store-app:
+    build:
+      context: ./service-store
+      target: 'production'
+    image: ${IMAGE_REGISTRY:+${IMAGE_REGISTRY}/}service-store:latest
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '${SERVICE_STORE_API_PORT}:${SERVICE_STORE_API_PORT}'
+    restart: always    
+
+  service-community-app:
+    build:
+      context: ./service-community
+      target: 'production'
+    image: ${IMAGE_REGISTRY:+${IMAGE_REGISTRY}/}service-community:latest
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '${SERVICE_COMMUNITY_API_PORT}:${SERVICE_COMMUNITY_API_PORT}'
+    restart: always

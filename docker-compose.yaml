@@ -1,0 +1,109 @@
+version: '3.9'
+networks:
+    default:
+        name: vsc-connect-network
+
+services:
+  # vsc-api-app:
+  #   build:
+  #     context: ./vsc-api
+  #     target: 'development'
+  #   image: ${IMAGE_REGISTRY:+${IMAGE_REGISTRY}/}vsc-api:latest
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - NODE_ENV=development
+  #     - MINIO_ENDPOINT=file.zicure.com
+  #     - MINIO_PORT=9000
+  #     - MINIO_USE_SSL=false
+  #     - MINIO_ACCESS_KEY=PTMWTFXYitWBSJUW97oJ
+  #     - MINIO_SECRET_KEY=4SYipw2h27SxbXH776Jj4gxRsbfkQmlFkAEiVY3W
+  #   ports:
+  #     - '${SERVICE_API_PORT}:${SERVICE_API_PORT}'
+  #   develop:
+  #     watch:
+  #       - action: rebuild
+  #         path: ./vsc-api/package.json
+  #       # - action: rebuild
+  #       #   path: ./vsc-api/config
+  #   volumes:
+  #     - ./vsc-api/src:/home/node/app/src
+  #   restart: always
+
+  service-member-app:
+    build:
+      context: ./service-member
+      target: 'development'
+    image: ${IMAGE_REGISTRY:+${IMAGE_REGISTRY}/}service-member:latest
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+      - MINIO_ENDPOINT=file.zicure.com
+      - MINIO_PORT=9000
+      - MINIO_USE_SSL=false
+      - MINIO_ACCESS_KEY=WvFkB8JxlKYH11LVAZp8
+      - MINIO_SECRET_KEY=FBNhNbHJp8PyLyZMF5xwwTq0EVSotlNLAKyTtl2N
+    ports:
+      - '${SERVICE_MEMBER_API_PORT}:${SERVICE_MEMBER_API_PORT}'
+    develop:
+      watch:
+        - action: rebuild
+          path: ./service-member/package.json
+        # - action: rebuild
+        #   path: ./service-member/config
+    volumes:
+      - ./service-member/src:/home/node/app/src
+    restart: always
+
+  # service-store-app:
+  #   build:
+  #     context: ./service-store
+  #     target: 'development'
+  #   image: ${IMAGE_REGISTRY:+${IMAGE_REGISTRY}/}service-store:latest
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - NODE_ENV=development
+  #     - MINIO_ENDPOINT=file.zicure.com
+  #     - MINIO_PORT=9000
+  #     - MINIO_USE_SSL=false
+  #     - MINIO_ACCESS_KEY=PTMWTFXYitWBSJUW97oJ
+  #     - MINIO_SECRET_KEY=4SYipw2h27SxbXH776Jj4gxRsbfkQmlFkAEiVY3W
+  #   ports:
+  #     - '${SERVICE_STORE_API_PORT}:${SERVICE_STORE_API_PORT}'
+  #   develop:
+  #     watch:
+  #       - action: rebuild
+  #         path: ./service-store/package.json
+  #       # - action: rebuild
+  #       #   path: ./service-store/config
+  #   volumes:
+  #     - ./service-store/src:/home/node/app/src
+  #   restart: always
+
+  service-community-app:
+    build:
+      context: ./service-community
+      target: 'development'
+    image: ${IMAGE_REGISTRY:+${IMAGE_REGISTRY}/}service-community:latest
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+      - MINIO_ENDPOINT=file.zicure.com
+      - MINIO_PORT=9000
+      - MINIO_USE_SSL=false
+      - MINIO_ACCESS_KEY=WvFkB8JxlKYH11LVAZp8
+      - MINIO_SECRET_KEY=FBNhNbHJp8PyLyZMF5xwwTq0EVSotlNLAKyTtl2N
+    ports:
+      - '${SERVICE_COMMUNITY_API_PORT}:${SERVICE_COMMUNITY_API_PORT}'
+    develop:
+      watch:
+        - action: rebuild
+          path: ./service-community/package.json
+        # - action: rebuild
+        #   path: ./service-community/config
+    volumes:
+      - ./service-community/src:/home/node/app/src
+    restart: always

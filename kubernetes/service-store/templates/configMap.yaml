@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Chart.Name}}
+  namespace: {{.Release.Namespace}}
+  labels:
+    app: {{.Chart.Name}}
+    heritage: {{.Release.Service}}
+    release: {{.Release.Name}}
+    chart: '{{ .Chart.Name }}-{{ .Chart.Version }}'
+data:
+  NODE_ENV: {{.Values.configMap.NODE_ENV | quote}}
+  PORT: {{.Values.configMap.PORT | quote}}
+
+  SERVICE_STORE_API_PORT: {{.Values.configMap.SERVICE_STORE_API_PORT | quote}}
+  SERVICE_API_POSTGRES_HOST: {{.Values.configMap.SERVICE_API_POSTGRES_HOST | quote}}
+  SERVICE_API_POSTGRES_PORT: {{.Values.configMap.SERVICE_API_POSTGRES_PORT | quote}}
+  SERVICE_API_POSTGRES_USER: {{.Values.configMap.SERVICE_API_POSTGRES_USER | quote}}
+  SERVICE_API_POSTGRES_DATABASE: {{.Values.configMap.SERVICE_API_POSTGRES_DATABASE | quote}}
+  SERVICE_API_JWT_EXPIRATION_TIME: {{.Values.configMap.SERVICE_API_JWT_EXPIRATION_TIME | quote}}
+  MINIO_ENDPOINT: {{.Values.configMap.MINIO_ENDPOINT | quote}}
+  MINIO_USE_SSL: {{.Values.configMap.MINIO_USE_SSL | quote}}
+  SWAGGER_BASE_URI: {{.Values.configMap.SWAGGER_BASE_URI | quote}}
